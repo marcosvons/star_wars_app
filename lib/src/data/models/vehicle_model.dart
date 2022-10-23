@@ -13,8 +13,8 @@ class VehicleModel extends Vehicle {
     required String cargoCapacity,
     required String consumables,
     required String vehicleClass,
-    required List<String> pilots,
-    required List<String> films,
+    required List<dynamic> pilots,
+    required List<dynamic> films,
   }) : super(
           name: name,
           model: model,

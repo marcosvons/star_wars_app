@@ -6,4 +6,5 @@ abstract class ServiceConstants {
     'Starships': 'starships/',
     'Vehicles': 'vehicles/',
   };
+  static const String postUrl = 'https://jsonplaceholder.typicode.com/posts';
 }

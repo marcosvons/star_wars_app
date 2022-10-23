@@ -13,4 +13,13 @@ class ApiService {
     var response = await _client.get(uri);
     return response;
   }
+
+  Future<http.Response> postCharacter({required String body}) async {
+    Uri uri = Uri.parse(ServiceConstants.postUrl);
+    var response = await _client.post(
+      uri,
+      body: body,
+    );
+    return response;
+  }
 }

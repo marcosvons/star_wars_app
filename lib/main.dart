@@ -1,6 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
+import 'package:star_wars_app/src/data/repositories/planets_repository.dart';
+import 'package:star_wars_app/src/data/repositories/repositories.dart';
+import 'package:star_wars_app/src/data/repositories/starships_repository.dart';
+import 'package:star_wars_app/src/data/repositories/vehicles_repository.dart';
+import 'package:star_wars_app/src/domain/repositories/i_planets_repository.dart';
+import 'package:star_wars_app/src/domain/repositories/i_repositories_object.dart';
+import 'package:star_wars_app/src/domain/repositories/i_starships_repository.dart';
+import 'package:star_wars_app/src/domain/repositories/i_vehicles_repository.dart';
+import 'package:star_wars_app/src/domain/usecases/get_person_information_usecase.dart';
+import 'package:star_wars_app/src/domain/usecases/send_person_information_usecase.dart';
+import 'package:star_wars_app/src/presentation/blocs/connection_bloc.dart';
+import 'package:star_wars_app/src/presentation/blocs/interfaces/i_connection_bloc.dart';
+import 'package:star_wars_app/src/presentation/blocs/interfaces/i_person_bloc.dart';
+import 'package:star_wars_app/src/presentation/blocs/person_bloc.dart';
 
 import 'src/core/usecases/i_usecase.dart';
 import 'src/data/datasources/remote/api_service.dart';
@@ -9,7 +23,7 @@ import 'src/domain/repositories/i_people_repository.dart';
 import 'src/domain/usecases/get_people_usecase.dart';
 import 'src/presentation/blocs/interfaces/i_people_bloc.dart';
 import 'src/presentation/blocs/people_bloc.dart';
-import 'src/presentation/views/people_list.dart';
+import 'src/presentation/views/menu.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,14 +42,42 @@ class _MyAppState extends State<MyApp> {
   late IPeopleRepository _peopleRepository;
   late ApiService _apiService;
   late http.Client _client;
+  late IStarshipsRepository _starshipsRepository;
+  late IVehiclesRepository _vehiclesRepository;
+  late IPlanetsRepository _planetsRepository;
+  late IRepositoriesObject _repositories;
+  late UseCase _getPersonInformationUseCase;
+  late IPersonBloc _personBloc;
+  late IConnectionBloc _connectionBloc;
+  late SendPersonInformationUseCase _sendPersonInformationUseCase;
 
   @override
   void initState() {
     _client = http.Client();
     _apiService = ApiService(client: _client);
-    _peopleRepository = PeopleRepository(_apiService);
+    _starshipsRepository = StarshipsRepository(_apiService);
+    _planetsRepository = PlanetsRepository(_apiService);
+    _vehiclesRepository = VehiclesRepository(_apiService);
+    _repositories = RepositoriesObject(
+      _planetsRepository,
+      _starshipsRepository,
+      _vehiclesRepository,
+    );
+    _peopleRepository = PeopleRepository(
+      _apiService,
+      _repositories,
+    );
+    _sendPersonInformationUseCase =
+        SendPersonInformationUseCase(_peopleRepository);
+    _getPersonInformationUseCase =
+        GetPersonInformationUseCase(_peopleRepository);
+    _personBloc = PersonBloc(
+      _getPersonInformationUseCase,
+      _sendPersonInformationUseCase,
+    );
     _getPeopleUsecase = GetPeopleUseCase(_peopleRepository);
     _peopleBloc = PeopleBloc(_getPeopleUsecase);
+    _connectionBloc = ConnectionBloc();
     super.initState();
   }
 
@@ -44,11 +86,12 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
       providers: [
         Provider<IPeopleBloc>.value(value: _peopleBloc),
+        Provider<IPersonBloc>.value(value: _personBloc),
+        Provider<IConnectionBloc>.value(value: _connectionBloc),
       ],
-      child: MaterialApp(
+      child: const MaterialApp(
         title: 'Star Wars',
-        theme: ThemeData(),
-        home: const PeopleList(),
+        home: Menu(),
       ),
     );
   }

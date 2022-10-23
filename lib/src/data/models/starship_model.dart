@@ -15,8 +15,8 @@ class StarshipModel extends Starship {
     required String hyperdriveRating,
     required String MGLT,
     required String starshipClass,
-    required List<String> pilots,
-    required List<String> films,
+    required List<dynamic> pilots,
+    required List<dynamic> films,
   }) : super(
           name: name,
           model: model,

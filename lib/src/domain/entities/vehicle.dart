@@ -10,8 +10,8 @@ class Vehicle {
   final String cargoCapacity;
   final String consumables;
   final String vehicleClass;
-  final List<String> pilots;
-  final List<String> films;
+  final List<dynamic> pilots;
+  final List<dynamic> films;
 
   Vehicle({
     required this.name,

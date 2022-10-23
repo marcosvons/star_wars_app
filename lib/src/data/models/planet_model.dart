@@ -11,8 +11,8 @@ class PlanetModel extends Planet {
     required String terrain,
     required String surfaceWater,
     required String population,
-    required List<String> residents,
-    required List<String> films,
+    required List<dynamic> residents,
+    required List<dynamic> films,
   }) : super(
           name: name,
           rotationPeriod: rotationPerdiod,

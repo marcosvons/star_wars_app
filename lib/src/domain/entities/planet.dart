@@ -8,8 +8,8 @@ class Planet {
   final String terrain;
   final String surfaceWater;
   final String population;
-  final List<String> residents;
-  final List<String> films;
+  final List<dynamic> residents;
+  final List<dynamic> films;
 
   Planet({
     required this.name,

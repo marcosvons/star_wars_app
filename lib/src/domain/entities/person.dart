@@ -12,6 +12,7 @@ class Person {
   final List<dynamic> species;
   final List<dynamic> vehicles;
   final List<dynamic> starships;
+  final String url;
 
   Person({
     required this.name,
@@ -27,5 +28,6 @@ class Person {
     required this.species,
     required this.vehicles,
     required this.starships,
+    required this.url
   });
 }

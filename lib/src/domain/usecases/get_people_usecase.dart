@@ -8,7 +8,7 @@ class GetPeopleUseCase implements UseCase<PeopleEvent, String> {
   GetPeopleUseCase(this._peopleRepository);
 
   @override
-  Future<PeopleEvent> call({String? params}) async {
+  Future<PeopleEvent> call({required String params}) async {
     return await _peopleRepository.fetchPeople(endpoint: params);
   }
 }

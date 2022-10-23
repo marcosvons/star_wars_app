@@ -1,0 +1,32 @@
+abstract class Dimensions {
+  static const double appTitleFontSize = 40;
+  static const double carouselAspectRatio = 1.5;
+  static const double carouselMultiplierHeight = 0.75;
+  static const double carouselViewportFraction = 0.35;
+  static const double characterNameFontSize = 34;
+  static const double characterGenderFontSize = 28;
+  static const double paginationButtonsHorizontalPadding = 20;
+  static const double paginationButtonsVerticalPadding = 10;
+  static const double loaderHeight = 250;
+  static const double emptyErrorTextFontSize = 24;
+  static const double tryAgainButtonFontSize = 18;
+  static const double emptyErrorTextHorizontalPadding = 20;
+  static const double emptyErrorTextVerticalPadding = 30;
+  static const int paginationButtonsFlex = 2;
+  static const double paginationButtonFontSize = 16;
+  static const double paginationNumberFontSize = 20;
+  static const int paginationNumberFlex = 1;
+  static const double charactersListPadding = 8;
+  static const double characterDetailFontSize = 20;
+  static const int detailPropertiesFlex = 1;
+  static const double menuTitleFontSize = 50;
+  static const double menuMessageFontSize = 24;
+  static const double menuButtonFontSize = 20;
+  static const double menuButtonPadding = 10;
+  static const double characterDetailHorizontalPadding = 15;
+  static const double characterDetailVerticalPadding = 30;
+  static const double characterDetailRowWidthMultiplier = 0.45;
+  static const double detailReportButtonTopPadding = 10;
+  static const double materialBannerPadding = 10;
+  static const double materialBannerFontSize = 16;
+}

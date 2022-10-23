@@ -12,8 +12,8 @@ class Starship {
   final String hyperdriveRating;
   final String MGLT;
   final String starshipClass;
-  final List<String> pilots;
-  final List<String> films;
+  final List<dynamic> pilots;
+  final List<dynamic> films;
 
   Starship({
     required this.name,

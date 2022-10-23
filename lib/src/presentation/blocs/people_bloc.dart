@@ -1,8 +1,9 @@
 import 'dart:async';
 
-import 'package:star_wars_app/src/core/usecases/i_usecase.dart';
-import 'package:star_wars_app/src/domain/entities/people_event.dart';
-import 'package:star_wars_app/src/presentation/blocs/interfaces/i_people_bloc.dart';
+import '../../core/usecases/i_usecase.dart';
+import '../../domain/entities/people_event.dart';
+import 'interfaces/i_people_bloc.dart';
+import '../../core/utils/status_constants.dart';
 
 class PeopleBloc implements IPeopleBloc {
   final UseCase _getPeopleUsecase;
