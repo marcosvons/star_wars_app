@@ -1,5 +1,6 @@
 import 'package:http/http.dart' as http;
-import 'package:star_wars_app/src/core/utils/service_constants.dart';
+
+import '../../../core/utils/service_constants.dart';
 
 class ApiService {
   final http.Client _client;
@@ -8,8 +9,8 @@ class ApiService {
     http.Client? client,
   }) : _client = client ?? http.Client();
 
-  Future<http.Response> apiCall({required String endpoint}) async {
-    Uri uri = Uri.parse('${ServiceConstants.baseURL}$endpoint');
+  Future<http.Response> apiCall({required String url}) async {
+    Uri uri = Uri.parse(url);
     var response = await _client.get(uri);
     return response;
   }

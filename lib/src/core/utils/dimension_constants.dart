@@ -25,8 +25,10 @@ abstract class Dimensions {
   static const double menuButtonPadding = 10;
   static const double characterDetailHorizontalPadding = 15;
   static const double characterDetailVerticalPadding = 30;
-  static const double characterDetailRowWidthMultiplier = 0.45;
+  static const double characterDetailRowWidthMultiplier = 0.55;
   static const double detailReportButtonTopPadding = 10;
   static const double materialBannerPadding = 10;
   static const double materialBannerFontSize = 16;
+  static const int detailMaxLines = 2;
+  static const double propertiesNamesRowWidthMultiplier = 0.35;
 }

@@ -11,7 +11,7 @@ abstract class StringConstants {
   static const String peopleString = 'People';
   static const String nameProperty = 'Name';
   static const String genderProperty = 'Gender';
-  static const String birthYearProperty = 'Year of Birth';
+  static const String birthYearProperty = 'YoB';
   static const String homeworldProperty = 'Homeworld';
   static const String heightProperty = 'Height';
   static const String massProperty = 'Mass';
@@ -28,4 +28,6 @@ abstract class StringConstants {
   static const String reportSightingSuccessful = 'Sighting reported successfully';
   static const String reportSightingFailed = 'Failed to report sighting';
   static const String closeMaterialBanner = 'Dismiss';
+  static const String errorMessageDetailProperties = 'We cannot show this information right now';
+  static const String noDetailProperty = 'None';
 }

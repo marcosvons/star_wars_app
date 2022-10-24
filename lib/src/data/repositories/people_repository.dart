@@ -1,25 +1,23 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:star_wars_app/src/data/datasources/remote/api_service.dart';
-import 'package:star_wars_app/src/data/models/person_model.dart';
-import 'package:star_wars_app/src/domain/entities/people_event.dart';
-import 'package:star_wars_app/src/domain/entities/person_event.dart';
-import 'package:star_wars_app/src/domain/entities/planet_event.dart';
-import 'package:star_wars_app/src/domain/entities/starship_event.dart';
-import 'package:star_wars_app/src/domain/entities/vehicle_event.dart';
-import 'package:star_wars_app/src/domain/repositories/format_json.dart';
-import 'package:star_wars_app/src/domain/repositories/i_planets_repository.dart';
-import 'package:star_wars_app/src/domain/repositories/i_starships_repository.dart';
-import 'package:star_wars_app/src/domain/repositories/i_vehicles_repository.dart';
-
+import '../datasources/remote/api_service.dart';
+import '../models/person_model.dart';
+import '../../domain/entities/people_event.dart';
+import '../../domain/entities/person_event.dart';
+import '../../domain/entities/planet_event.dart';
+import '../../domain/entities/starship_event.dart';
+import '../../domain/entities/vehicle_event.dart';
+import '../../domain/repositories/format_json.dart';
+import '../../domain/repositories/i_planets_repository.dart';
+import '../../domain/repositories/i_starships_repository.dart';
+import '../../domain/repositories/i_vehicles_repository.dart';
 import '../../core/utils/status_constants.dart';
 import '../../core/utils/string_constants.dart';
-import '../../domain/repositories/crop.dart';
 import '../../domain/repositories/i_people_repository.dart';
 import '../../domain/repositories/i_repositories_object.dart';
 
-class PeopleRepository with Crop, FormatJson implements IPeopleRepository {
+class PeopleRepository with FormatJson implements IPeopleRepository {
   final ApiService _service;
   final IRepositoriesObject _repositories;
 
@@ -31,8 +29,9 @@ class PeopleRepository with Crop, FormatJson implements IPeopleRepository {
   @override
   Future<PeopleEvent> fetchPeople({required endpoint}) async {
     List<PersonModel> people = [];
+    int page;
     try {
-      var apiResponse = await _service.apiCall(endpoint: endpoint);
+      var apiResponse = await _service.apiCall(url: endpoint);
       if (apiResponse.statusCode == HttpStatus.ok) {
         Map<String, dynamic> jsonDecoded = json.decode(apiResponse.body);
         List<dynamic> peopleJson = json.decode(apiResponse.body)['results'];
@@ -42,13 +41,17 @@ class PeopleRepository with Crop, FormatJson implements IPeopleRepository {
           peopleJson.forEach((person) {
             people.add(PersonModel.fromJson(json: person));
           });
-          Map<String, dynamic> paginationInfo = getPaginationInfo(jsonDecoded);
+          if (jsonDecoded['previous'] != null){
+            page = int.parse(jsonDecoded['previous'].substring(jsonDecoded['previous'].indexOf('=')+1))+1;
+          } else {
+            page = int.parse(jsonDecoded['next'].substring(jsonDecoded['next'].indexOf('=')+1))-1;
+          }
           return PeopleEvent(
             people: people,
             status: Status.success,
-            previousPage: paginationInfo['previous'],
-            nextPage: paginationInfo['next'],
-            page: paginationInfo['page'],
+            previousPage: jsonDecoded['previous'],
+            nextPage: jsonDecoded['next'],
+            page: page,
           );
         }
       }

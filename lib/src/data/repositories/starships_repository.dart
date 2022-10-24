@@ -7,9 +7,8 @@ import '../../domain/entities/starship_event.dart';
 import '../../domain/repositories/i_starships_repository.dart';
 import '../../core/utils/status_constants.dart';
 import '../../core/utils/string_constants.dart';
-import '../../domain/repositories/crop.dart';
 
-class StarshipsRepository with Crop implements IStarshipsRepository {
+class StarshipsRepository implements IStarshipsRepository {
   final ApiService _service;
 
   StarshipsRepository(this._service);
@@ -17,14 +16,12 @@ class StarshipsRepository with Crop implements IStarshipsRepository {
   @override
   Future<StarshipEvent> fetchStarshipInformation(
       {required List<dynamic> starshipsEndpoint}) async {
-    List<String> croppedEndpoints = [];
     List<StarshipModel> starships = [];
     bool apiErrorOccurred = false;
 
     try {
       for (int i = 0; i < starshipsEndpoint.length; i++) {
-        croppedEndpoints.add(cropEndpoint(endpoint: starshipsEndpoint[i]));
-        var apiResponse = await _service.apiCall(endpoint: croppedEndpoints[i]);
+        var apiResponse = await _service.apiCall(url: starshipsEndpoint[i]);
         if (apiResponse.statusCode == HttpStatus.ok) {
           Map<String, dynamic> starshipJson = json.decode(apiResponse.body);
           if (starshipJson.isEmpty) {
