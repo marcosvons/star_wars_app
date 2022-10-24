@@ -32,7 +32,7 @@ Widget propertiesList({
                 fontSize: Dimensions.characterDetailFontSize,
                 color: Palette.starWarsYellow,
               ),
-              maxLines: 2,
+              maxLines: Dimensions.detailMaxLines,
               textAlign: TextAlign.end,
             );
           },
@@ -44,10 +44,11 @@ Widget propertiesList({
         child: Text(
           StringConstants.noneProperty,
           style: TextStyle(
-              fontFamily: AssetsConstants.appMainFont,
-              fontSize: Dimensions.characterDetailFontSize,
-              color: Palette.starWarsYellow),
-          textAlign: TextAlign.center,
+            fontFamily: AssetsConstants.appMainFont,
+            fontSize: Dimensions.characterDetailFontSize,
+            color: Palette.starWarsYellow,
+          ),
+          textAlign: TextAlign.end,
         ),
       );
     case Status.error:
@@ -60,7 +61,7 @@ Widget propertiesList({
             fontSize: Dimensions.characterDetailFontSize,
             color: Palette.starWarsYellow,
           ),
-          textAlign: TextAlign.center,
+          textAlign: TextAlign.end,
         ),
       );
   }

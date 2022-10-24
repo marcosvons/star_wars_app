@@ -31,7 +31,7 @@ class _PeopleListState extends State<PeopleList> {
       context,
       listen: BoolConstants.listenProvider,
     ).getPeople(
-        endpoint: ServiceConstants.endpoints[StringConstants.peopleString]!);
+        endpoint: ServiceConstants.firstPageUrl);
     super.initState();
   }
 

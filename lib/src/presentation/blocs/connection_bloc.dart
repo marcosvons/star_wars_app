@@ -8,5 +8,4 @@ class ConnectionBloc implements IConnectionBloc {
 
   @override
   set setConnectionStatus(bool status) => _isConnected = status;
-
 }

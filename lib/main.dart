@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
-import 'package:star_wars_app/src/data/repositories/planets_repository.dart';
-import 'package:star_wars_app/src/data/repositories/repositories.dart';
-import 'package:star_wars_app/src/data/repositories/starships_repository.dart';
-import 'package:star_wars_app/src/data/repositories/vehicles_repository.dart';
-import 'package:star_wars_app/src/domain/repositories/i_planets_repository.dart';
-import 'package:star_wars_app/src/domain/repositories/i_repositories_object.dart';
-import 'package:star_wars_app/src/domain/repositories/i_starships_repository.dart';
-import 'package:star_wars_app/src/domain/repositories/i_vehicles_repository.dart';
-import 'package:star_wars_app/src/domain/usecases/get_person_information_usecase.dart';
-import 'package:star_wars_app/src/domain/usecases/send_person_information_usecase.dart';
-import 'package:star_wars_app/src/presentation/blocs/connection_bloc.dart';
-import 'package:star_wars_app/src/presentation/blocs/interfaces/i_connection_bloc.dart';
-import 'package:star_wars_app/src/presentation/blocs/interfaces/i_person_bloc.dart';
-import 'package:star_wars_app/src/presentation/blocs/person_bloc.dart';
 
+import 'src/core/utils/string_constants.dart';
+import 'src/data/repositories/planets_repository.dart';
+import 'src/data/repositories/repositories.dart';
+import 'src/data/repositories/starships_repository.dart';
+import 'src/data/repositories/vehicles_repository.dart';
+import 'src/domain/repositories/i_planets_repository.dart';
+import 'src/domain/repositories/i_repositories_object.dart';
+import 'src/domain/repositories/i_starships_repository.dart';
+import 'src/domain/repositories/i_vehicles_repository.dart';
+import 'src/domain/usecases/get_person_information_usecase.dart';
+import 'src/domain/usecases/send_person_information_usecase.dart';
+import 'src/presentation/blocs/connection_bloc.dart';
+import 'src/presentation/blocs/interfaces/i_connection_bloc.dart';
+import 'src/presentation/blocs/interfaces/i_person_bloc.dart';
+import 'src/presentation/blocs/person_bloc.dart';
 import 'src/core/usecases/i_usecase.dart';
 import 'src/data/datasources/remote/api_service.dart';
 import 'src/data/repositories/people_repository.dart';
@@ -90,7 +91,7 @@ class _MyAppState extends State<MyApp> {
         Provider<IConnectionBloc>.value(value: _connectionBloc),
       ],
       child: const MaterialApp(
-        title: 'Star Wars',
+        title: StringConstants.appTitle,
         home: Menu(),
       ),
     );

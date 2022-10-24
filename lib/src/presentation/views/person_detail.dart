@@ -1,11 +1,10 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:star_wars_app/src/domain/entities/person_event.dart';
-import 'package:star_wars_app/src/presentation/blocs/interfaces/i_connection_bloc.dart';
-import 'package:star_wars_app/src/presentation/widgets/character_information.dart';
-import 'package:star_wars_app/src/presentation/widgets/list.dart';
 
+import '../../domain/entities/person_event.dart';
+import '../blocs/interfaces/i_connection_bloc.dart';
+import '../widgets/character_information.dart';
+import '../widgets/list.dart';
 import '../../core/utils/status_constants.dart';
 import '../../data/models/person_model.dart';
 import '../blocs/interfaces/i_person_bloc.dart';
@@ -16,7 +15,7 @@ import '../../core/utils/palette.dart';
 import '../../core/utils/string_constants.dart';
 import '../widgets/empty_widget.dart';
 import '../widgets/error_widget.dart';
-import '../widgets/homeworldWidget.dart';
+import '../widgets/homeworld_widget.dart';
 import '../widgets/loading_widget.dart';
 
 class PersonDetail extends StatefulWidget {
@@ -56,7 +55,7 @@ class _PersonDetailState extends State<PersonDetail> {
             ),
           ),
           leading: IconButton(
-            onPressed: () async {
+            onPressed: () {
               ScaffoldMessenger.of(context).removeCurrentMaterialBanner();
               Navigator.pop(context);
             },
@@ -88,9 +87,10 @@ class _PersonDetailState extends State<PersonDetail> {
                   return loading();
                 case Status.success:
                   return Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: Dimensions.characterDetailHorizontalPadding,
-                      vertical: Dimensions.characterDetailVerticalPadding,
+                    padding: const EdgeInsets.only(
+                      left: Dimensions.characterDetailHorizontalPadding,
+                      right: Dimensions.characterDetailHorizontalPadding,
+                      top: Dimensions.characterDetailVerticalPadding,
                     ),
                     child: Column(
                       children: [
@@ -100,7 +100,7 @@ class _PersonDetailState extends State<PersonDetail> {
                               SizedBox(
                                 width: MediaQuery.of(context).size.width *
                                     Dimensions
-                                        .characterDetailRowWidthMultiplier,
+                                        .propertiesNamesRowWidthMultiplier,
                                 child: Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
@@ -244,8 +244,8 @@ class _PersonDetailState extends State<PersonDetail> {
                         ).getConnectionStatus
                             ? Padding(
                                 padding: const EdgeInsets.only(
-                                    top: Dimensions
-                                        .detailReportButtonTopPadding),
+                                  top: Dimensions.detailReportButtonTopPadding,
+                                ),
                                 child: TextButton(
                                   onPressed: () async {
                                     ScaffoldMessenger.of(context)
@@ -261,7 +261,8 @@ class _PersonDetailState extends State<PersonDetail> {
                                         .showMaterialBanner(
                                       MaterialBanner(
                                         padding: const EdgeInsets.all(
-                                            Dimensions.materialBannerPadding),
+                                          Dimensions.materialBannerPadding,
+                                        ),
                                         content: response == Status.success
                                             ? const Text(
                                                 StringConstants

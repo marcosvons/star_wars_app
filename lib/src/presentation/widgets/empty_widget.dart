@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:star_wars_app/src/core/utils/bool_constants.dart';
 
 import '../../core/utils/assets_constants.dart';
 import '../../core/utils/dimension_constants.dart';
@@ -31,8 +32,11 @@ Widget empty(BuildContext context) {
       ),
       TextButton(
         onPressed: () {
-          Provider.of<IPeopleBloc>(context, listen: false).getPeople(
-            endpoint: ServiceConstants.endpoints[StringConstants.peopleString]!,
+          Provider.of<IPeopleBloc>(
+            context,
+            listen: BoolConstants.listenProvider,
+          ).getPeople(
+            endpoint: ServiceConstants.firstPageUrl,
           );
         },
         style: ButtonStyle(

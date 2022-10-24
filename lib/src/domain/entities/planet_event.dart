@@ -1,5 +1,4 @@
-import 'package:star_wars_app/src/data/models/planet_model.dart';
-
+import '../../data/models/planet_model.dart';
 import '../../core/utils/status_constants.dart';
 
 class PlanetEvent {

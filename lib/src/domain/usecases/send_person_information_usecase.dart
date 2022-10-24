@@ -1,8 +1,6 @@
-import 'package:star_wars_app/src/data/models/person_model.dart';
-
+import '../../data/models/person_model.dart';
 import '../../core/usecases/i_usecase.dart';
 import '../../core/utils/status_constants.dart';
-import '../entities/person_event.dart';
 import '../repositories/i_people_repository.dart';
 
 class SendPersonInformationUseCase implements UseCase<Status, PersonModel> {
