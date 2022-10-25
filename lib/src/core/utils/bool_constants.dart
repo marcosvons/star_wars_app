@@ -4,4 +4,5 @@ abstract class BoolConstants {
   static const bool carouselEnlargedCenterPage = true;
   static const bool carouselInfiniteScroll = false;
   static const bool carouselAutoPlay = true;
+  static const bool showDebugBanner = false;
 }

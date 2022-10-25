@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 
+import 'src/core/utils/bool_constants.dart';
 import 'src/core/utils/string_constants.dart';
 import 'src/data/repositories/planets_repository.dart';
 import 'src/data/repositories/repositories.dart';
@@ -93,6 +94,7 @@ class _MyAppState extends State<MyApp> {
       child: const MaterialApp(
         title: StringConstants.appTitle,
         home: Menu(),
+        debugShowCheckedModeBanner: BoolConstants.showDebugBanner
       ),
     );
   }
